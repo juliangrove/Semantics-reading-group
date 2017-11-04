@@ -1,4 +1,0 @@
-module Anaphora where
-
-import Nondeterminism
-import Control.Monad.State
