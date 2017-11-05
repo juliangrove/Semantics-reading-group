@@ -1,10 +1,12 @@
+{-# LANGUAGE MonadComprehensions #-}
+
 module Anaphora where
 
 import Model
 import Nondeterminism
 import Control.Monad.State
 
-type DynamicEntity = StateT [Entity] [] Entity
+type DynamicEntity m = StateT (m Entity) [] Entity
 
 startState :: [Entity]
 startState = []
@@ -12,7 +14,7 @@ startState = []
 bind :: DynamicEntity -> DynamicEntity
 bind a = a >>= \x -> StateT $ \s -> runStateT a ([x] ++ s)
 
-makeDynEntity :: [Entity] -> DynamicEntity
+makeDynEntity :: Monad m => m Entity -> DynamicEntity
 makeDynEntity e = StateT $ \s -> [(x, s) | x <- e]
 
 aDyn :: OnePlacePred -> DynamicEntity
@@ -25,4 +27,4 @@ fa :: StateT [Entity] [] (a -> b) -> StateT [Entity] [] a -> StateT [Entity] [] 
 fa = (<*>)
 
 ba :: StateT [Entity] [] a -> StateT [Entity] [] (a -> b) -> StateT [Entity] [] b
-ba = \x -> \f -> fa f x
+ba = \dx -> \df -> dx >>= \x -> df >>= \f -> return $ f x
