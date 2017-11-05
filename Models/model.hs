@@ -1,5 +1,4 @@
--- $ ModelIntro
--- This is what the world is like.
+-- | This is what the world is like.
 
 module Model where
 

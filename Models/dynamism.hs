@@ -1,10 +1,9 @@
 {-# LANGUAGE MonadComprehensions #-}
 
-module Dynamism where
-
--- $ DynamismIntro
--- We here define a module for the management of dynamic discourse entities,
+-- | We here define a module for the management of dynamic discourse entities,
 -- along with nondeterminism, as set out in Charlow 2014.
+
+module Dynamism where
 
 import Model
 import Nondeterminism

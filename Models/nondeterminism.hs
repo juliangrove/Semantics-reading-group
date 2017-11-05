@@ -1,8 +1,7 @@
-module Nondeterminism where
-
--- $ NondeterminismIntro
--- We incorporate nondeterminism (i.e., list) functionality to handle
+-- | We incorporate nondeterminism (i.e., list) functionality to handle
 -- indefinites, as set out in Charlow 2014.
+
+module Nondeterminism where
 
 import Model
 import Control.Monad.List
