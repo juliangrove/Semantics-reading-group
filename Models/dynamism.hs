@@ -12,7 +12,7 @@ startState :: [Entity]
 startState = []
 
 bind :: Monad m => DynamicEntity m -> DynamicEntity m
-bind a = a >>= \x -> StateT $ \s -> runStateT a ([x] ++ s)
+bind a = a >>= \x -> StateT $ \s -> return (x, x : s)
 
 makeDynEntity :: Monad m => m Entity -> DynamicEntity m
 makeDynEntity e = StateT $ \s -> [(x, s) | x <- e]
