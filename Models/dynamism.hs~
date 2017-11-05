@@ -20,3 +20,9 @@ aDyn = \p -> makeDynEntity (a p)
 
 runFromStart :: StateT [Entity] [] a -> [(a, [Entity])]
 runFromStart c = runStateT c startState
+
+fa :: StateT [Entity] [] (a -> b) -> StateT [Entity] [] a -> StateT [Entity] [] b
+fa = (<*>)
+
+ba :: StateT [Entity] [] a -> StateT [Entity] [] (a -> b) -> StateT [Entity] [] b
+ba = \x -> \f -> fa f x

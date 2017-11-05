@@ -25,4 +25,4 @@ fa :: StateT [Entity] [] (a -> b) -> StateT [Entity] [] a -> StateT [Entity] [] 
 fa = (<*>)
 
 ba :: StateT [Entity] [] a -> StateT [Entity] [] (a -> b) -> StateT [Entity] [] b
-ba = \x -> \f -> fa f x
+ba = \dx -> \df -> dx >>= \x -> df >>= \f -> return $ f x
