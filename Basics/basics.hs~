@@ -1,18 +1,18 @@
 -- | Introduction to Haskell
--- *Values
--- *Types
--- *Typeclasses
--- *For types
--- *Show
--- *Eq
--- *Ord
--- *For unary type constructors
--- *Functor
--- *Numbers (integers, fractions; arithmetic; lambda abstraction)
--- *Booleans
--- *Characters
--- *Strings
--- *Lists (head, tail, take, nth element (!!), maps, comprehensions, concatentation)
+-- Values
+-- Types
+-- Typeclasses
+-- For types
+-- Show
+-- Eq
+-- Ord
+-- For unary type constructors
+-- Functor
+-- Numbers (integers, fractions; arithmetic; lambda abstraction)
+-- Booleans
+-- Characters
+-- Strings
+-- Lists (head, tail, take, nth element (!!), maps, comprehensions, concatentation)
 
 module Basics where
 

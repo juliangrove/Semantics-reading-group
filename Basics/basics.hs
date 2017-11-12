@@ -1,12 +1,12 @@
+{-# LANGUAGE FlexibleInstances #-}
+
 -- | Introduction to Haskell
 -- Values
 -- Types
 -- Typeclasses
--- For types
 -- Show
 -- Eq
 -- Ord
--- For unary type constructors
 -- Functor
 -- Numbers (integers, fractions; arithmetic; lambda abstraction)
 -- Booleans
@@ -15,6 +15,12 @@
 -- Lists (head, tail, take, nth element (!!), maps, comprehensions, concatentation)
 
 module Basics where
+
+instance Show (a -> b) where
+  show f = "dog"
+
+
+
 
 -- | Naturals
 -- | We define a new data structure for naturals, and then do arithemetic operations.
@@ -32,6 +38,9 @@ plus :: Nat -> Nat -> Nat
 plus n Zero = n
 plus n (Succ m) = Succ (plus n m)
 
+thing :: (Nat -> Nat) -> Nat
+thing f = f Zero
+
 -- | Subtraction
 
 minus :: Nat -> Nat -> Nat
@@ -48,4 +57,4 @@ times n (Succ m) = plus n (times n m)
 -- | Division
 
 divide :: Nat -> Nat -> Nat
-divide n m = if n == m then Succ Zero else Succ (divide (minus n m) m
+divide n m = if n == m then Succ Zero else Succ (divide (minus n m) m)
