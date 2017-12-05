@@ -11,17 +11,13 @@ import Control.Applicative
 a :: OnePlacePred -> [Entity]
 a = \p -> filter p entities
 
--- | Let's have a general lift for compositional operations.
-liftOp :: Monad m => (a -> b -> c) -> m a -> m b -> m c
-liftOp op arg1 arg2 = arg1 >>= \a1 -> arg2 >>= \a2 -> return $ op a1 a2 
-
 -- | Charlow 2014: p. 30, Fact 2.4
 faND :: [a -> b] -> [a] -> [b]
-faND = liftOp fa
+faND = (<*>)
 
 -- | Charlow 2014: p. 30, Fact 2.4
 baND :: [a] -> [a -> b] -> [b]
-baND = liftOp ba
+baND = \xND -> \fND -> xND >>= \x -> fND >>= \f -> return $ f x
 
 checkListForTruth :: [Bool] -> Bool
 checkListForTruth = or

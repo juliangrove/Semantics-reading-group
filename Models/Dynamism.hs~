@@ -36,12 +36,11 @@ runFromStart c = runStateT c startState
 
 -- | Charlow 2014: p. 45, Fact 2.11
 faDyn :: StateT [Entity] [] (a -> b) -> StateT [Entity] [] a -> StateT [Entity] [] b
-faDyn = liftOp fa
+faDyn = (<*>)
 
 -- | Charlow 2014: p. 45, Fact 2.11
 baDyn :: StateT [Entity] [] a -> StateT [Entity] [] (a -> b) -> StateT [Entity] [] b
-baDyn = liftOp ba
+baDyn = \dx -> \df -> dx >>= \x -> df >>= \f -> return $ f x
 
--- | Let's have a way of checking dynamic, nondeterministic booleans for truth.
 checkForTruth :: StateT [Entity] [] Bool -> Bool
 checkForTruth = \d -> checkListForTruth $ map fst $ runFromStart d
