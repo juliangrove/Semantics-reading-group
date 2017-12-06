@@ -28,3 +28,7 @@ every = \p -> ContT $ \k -> neg $ aDyn p >>= (\x -> neg $ k x)
 -- | Charlow 2014: p. 54, Def. 3.4
 no :: (Entity -> Bool) -> ScopalEntity (StateT [Entity] [])
 no = \p -> ContT $ \k -> neg $ aDyn p >>= k
+
+-- | Let's have a way of checking scopal booleans for truth.
+checkContForTruth :: ContT Bool (StateT [Entity] []) Bool -> Bool
+checkContForTruth = \c -> checkDynForTruth $ runContT c return

@@ -43,5 +43,5 @@ baDyn :: StateT [Entity] [] a -> StateT [Entity] [] (a -> b) -> StateT [Entity] 
 baDyn = liftOp ba
 
 -- | Let's have a way of checking dynamic, nondeterministic booleans for truth.
-checkForTruth :: StateT [Entity] [] Bool -> Bool
-checkForTruth = \d -> checkListForTruth $ map fst $ runFromStart d
+checkDynForTruth :: StateT [Entity] [] Bool -> Bool
+checkDynForTruth = \d -> checkListForTruth $ map fst $ runFromStart d
