@@ -10,7 +10,11 @@ import Control.Monad.State
 import Control.Monad.Trans.Cont
 
 -- | Define a type for scopal entities.
-type (ScopalEntity m) = ContT Bool m Entity
+type ScopalEntity m = ContT Bool (StateT [Entity] m) Entity
+
+-- | Charlow 2014: p. 68, Def. 3.12
+monadicLift :: Monad m => m a -> ContT r m a
+monadicLift m = ContT (m >>=)
 
 -- | Charlow 2014: p. 51, Def. 3.2
 neg :: StateT [Entity] [] Bool -> StateT [Entity] [] Bool

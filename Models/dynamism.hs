@@ -10,7 +10,7 @@ import Nondeterminism
 import Control.Monad.State
 
 -- | Define a type for dynamic entities.
-type (DynamicEntity m) = StateT [Entity] m Entity
+type DynamicEntity m = StateT [Entity] m Entity
 
 -- | Start from empty.
 startState :: [Entity]
